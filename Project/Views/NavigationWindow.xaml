@@ -1,0 +1,124 @@
+﻿<Window x:Class="Project.Views.NavigationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.Views"
+        mc:Ignorable="d"
+        Title="Video"
+        Height="700"
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        BorderThickness="0"
+        Loaded="Window_Loaded">
+    <Border Style="{StaticResource ResourceKey=MainBorder}"
+            BorderThickness="2"
+            BorderBrush="#14FFEC">
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!--Nav Bar-->
+            <Border Grid.Row="0"
+                    Height="70"
+                    Background="#323232"
+                    BorderThickness="0"
+                    CornerRadius="5, 5, 0, 0"
+                    ClipToBounds="True"
+                    Padding="10, 0, 30, 0"
+                    x:Name="BrdNavbar"
+                    MouseDown="BrdNavbar_MouseDown">
+                <Grid Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--Logo-->
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <Image Source="/Assets/Images/logo.png"
+                               Stretch="Uniform"
+                               Width="24"
+                               Height="24"
+                               VerticalAlignment="Center"
+                               Margin="0, 0, 5, 0" />
+                        <TextBlock Text="ویدئو"
+                                   FontFamily="{StaticResource Vazir}"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#FFF"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <!--Title-->
+                    <TextBlock Grid.Column="1"
+                               Text="عنوان"
+                               FontFamily="{StaticResource ResourceKey=Vazir}"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Foreground="#14FFEC"
+                               VerticalAlignment="Center"
+                               Margin="30, 0, 0, 0"
+                               x:Name="TxbWindowTitle" />
+
+                    <!--Navigate to Previous Page-->
+                    <StackPanel Grid.Column="2"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <!--Previous Page Title-->
+                        <TextBlock Grid.Column="1"
+                                   Text="بازگشت"
+                                   FontFamily="{StaticResource ResourceKey=Vazir}"
+                                   FontSize="12"
+                                   FontWeight="Regular"
+                                   Foreground="#FFF"
+                                   VerticalAlignment="Center"
+                                   Margin="0, 0, 10, 0" />
+
+                        <!--Back Icon-->
+                        <Button Grid.Column="2"
+                                BorderThickness="0"
+                                Background="#323232"
+                                Foreground="#14FFEC"
+                                VerticalAlignment="Center"
+                                Cursor="Hand"
+                                Width="30"
+                                Height="30"
+                                FlowDirection="LeftToRight"
+                                x:Name="BtnBack"
+                                Click="BtnBack_Click">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <Path Data="{StaticResource ResourceKey=BackIcon}"
+                                                          Stretch="Uniform"
+                                                          Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=Foreground}" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!--Content-->
+            <Grid Grid.Row="1"
+                  Background="Transparent"
+                  x:Name="GrdContent" />
+        </Grid>
+    </Border>
+</Window>

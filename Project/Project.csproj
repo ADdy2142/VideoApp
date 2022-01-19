@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8DDAA4D5-6685-44E9-AE6B-DBE7E07B2ADA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Project</RootNamespace>
+    <AssemblyName>Project</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="SQLite.CodeFirst, Version=1.7.0.34, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLite.CodeFirst.1.7.0.34\lib\net45\SQLite.CodeFirst.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.115.5\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.115.5\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Admin\UserControls\VideosUserControl.xaml.cs">
+      <DependentUpon>VideosUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewModels\VideosViewModel.cs" />
+    <Compile Include="Converters\VideoCardDurationConverter.cs" />
+    <Compile Include="Infrastructure\BaseViewModel.cs" />
+    <Compile Include="Admin\Views\AddEditGroupWindow.xaml.cs">
+      <DependentUpon>AddEditGroupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\AdminGenresListWidthConverter.cs" />
+    <Compile Include="Converters\AvatarMarginConverter.cs" />
+    <Compile Include="Converters\DetailItemVisibilityConverter.cs" />
+    <Compile Include="Converters\SimilarVideosMarginConverter.cs" />
+    <Compile Include="Converters\StringToUpperConverter.cs" />
+    <Compile Include="Converters\VideoListWidthConverter.cs" />
+    <Compile Include="Data\AccessData\AccessData.cs" />
+    <Compile Include="Data\AccessData\IAccessData.cs" />
+    <Compile Include="Data\Context\ApplicationDbContext.cs" />
+    <Compile Include="Data\IRepositories\IAvatarRepository.cs" />
+    <Compile Include="Data\IRepositories\IGenreRepository.cs" />
+    <Compile Include="Data\IRepositories\IGroupRepository.cs" />
+    <Compile Include="Data\IRepositories\IHistoryRepository.cs" />
+    <Compile Include="Data\IRepositories\IUserRepository.cs" />
+    <Compile Include="Data\IRepositories\IUserVideoRepository.cs" />
+    <Compile Include="Data\IRepositories\IVideoGenreRepository.cs" />
+    <Compile Include="Data\IRepositories\IVideoHistoryRepository.cs" />
+    <Compile Include="Data\IRepositories\IVideoRepository.cs" />
+    <Compile Include="Data\Repositories\AvatarRepository.cs" />
+    <Compile Include="Data\Repositories\GenreRepository.cs" />
+    <Compile Include="Data\Repositories\GroupRepository.cs" />
+    <Compile Include="Data\Repositories\HistoryRepository.cs" />
+    <Compile Include="Data\Repositories\UserRepository.cs" />
+    <Compile Include="Data\Repositories\UserVideoRepository.cs" />
+    <Compile Include="Data\Repositories\VideoGenreRepository.cs" />
+    <Compile Include="Data\Repositories\VideoHistoryRepository.cs" />
+    <Compile Include="Data\Repositories\VideoRepository.cs" />
+    <Compile Include="Infrastructure\BaseNavigation.cs" />
+    <Compile Include="Infrastructure\ExtensionMethods.cs" />
+    <Compile Include="Models\Avatar.cs" />
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\History.cs" />
+    <Compile Include="Models\Navigation.cs" />
+    <Compile Include="Models\Pagination.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserVideo.cs" />
+    <Compile Include="Models\Video.cs" />
+    <Compile Include="Models\VideoGenre.cs" />
+    <Compile Include="Models\VideoHistory.cs" />
+    <Compile Include="Admin\UserControls\GenresUserControl.xaml.cs">
+      <DependentUpon>GenresUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserControls\GroupsUserControl.xaml.cs">
+      <DependentUpon>GroupsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EditProfileUserControl.xaml.cs">
+      <DependentUpon>EditProfileUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FilterPanelUserControl.xaml.cs">
+      <DependentUpon>FilterPanelUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\HistoryUserControl.xaml.cs">
+      <DependentUpon>HistoryUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SearchUserControl.xaml.cs">
+      <DependentUpon>SearchUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VideoDetailUserControl.xaml.cs">
+      <DependentUpon>VideoDetailUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VideoListUserControl.xaml.cs">
+      <DependentUpon>VideoListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VideoPanelUserControl.xaml.cs">
+      <DependentUpon>VideoPanelUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewModels\GenresViewModel.cs" />
+    <Compile Include="Admin\ViewModels\GroupsViewModel.cs" />
+    <Compile Include="ViewModels\EditProfileViewModel.cs" />
+    <Compile Include="ViewModels\FilterPanelViewModel.cs" />
+    <Compile Include="ViewModels\HistoryViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
+    <Compile Include="ViewModels\SignInViewModel.cs" />
+    <Compile Include="ViewModels\SignUpViewModel.cs" />
+    <Compile Include="ViewModels\VideoDetailViewModel.cs" />
+    <Compile Include="ViewModels\VideoListViewModel.cs" />
+    <Compile Include="Admin\Views\AddEditGenreWindow.xaml.cs">
+      <DependentUpon>AddEditGenreWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Views\AddEditVideoWindow.xaml.cs">
+      <DependentUpon>AddEditVideoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AlertWindow.xaml.cs">
+      <DependentUpon>AlertWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NavigationWindow.xaml.cs">
+      <DependentUpon>NavigationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignInWindow.xaml.cs">
+      <DependentUpon>SignInWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignUpWindow.xaml.cs">
+      <DependentUpon>SignUpWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Assets\Fonts\Vazir-Black.ttf" />
+    <Resource Include="Assets\Fonts\Vazir-Bold.ttf" />
+    <Resource Include="Assets\Fonts\Vazir-Light.ttf" />
+    <Resource Include="Assets\Fonts\Vazir-Medium.ttf" />
+    <Resource Include="Assets\Fonts\Vazir-Regular.ttf" />
+    <Resource Include="Assets\Fonts\Vazir-Thin.ttf" />
+    <Resource Include="Assets\Fonts\Vazir-Black-FD.ttf" />
+    <Resource Include="Assets\Fonts\Vazir-Bold-FD.ttf" />
+    <Resource Include="Assets\Fonts\Vazir-Light-FD.ttf" />
+    <Resource Include="Assets\Fonts\Vazir-Medium-FD.ttf" />
+    <Resource Include="Assets\Fonts\Vazir-Regular-FD.ttf" />
+    <Resource Include="Assets\Fonts\Vazir-Thin-FD.ttf" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Admin\UserControls\VideosUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Views\AddEditGroupWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin\UserControls\GenresUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\UserControls\GroupsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EditProfileUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\FilterPanelUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\HistoryUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SearchUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\VideoDetailUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\VideoListUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\VideoPanelUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Views\AddEditGenreWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Views\AddEditVideoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AlertWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NavigationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SignInWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SignUpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\avatar-1.png" />
+    <Resource Include="Assets\Images\avatar-2.png" />
+    <Resource Include="Assets\Images\avatar-3.png" />
+    <Resource Include="Assets\Images\avatar-4.png" />
+    <Resource Include="Assets\Images\avatar-5.png" />
+    <Resource Include="Assets\Images\avatar-6.png" />
+    <Resource Include="Assets\Images\avatar-7.png" />
+    <Resource Include="Assets\Images\avatar-8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\video-default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+</Project>

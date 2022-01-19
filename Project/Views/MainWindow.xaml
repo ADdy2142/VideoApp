@@ -1,0 +1,357 @@
+﻿<Window x:Class="Project.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.Views"
+        xmlns:uc="clr-namespace:Project.UserControls"
+        xmlns:vm="clr-namespace:Project.ViewModels"
+        mc:Ignorable="d"
+        Title="Video"
+        Height="700"
+        MinHeight="700"
+        MaxHeight="{Binding Source={x:Static SystemParameters.MaximizedPrimaryScreenHeight}}"
+        Width="1200"
+        MinWidth="1200"
+        MaxWidth="{Binding Source={x:Static SystemParameters.MaximizedPrimaryScreenWidth}}"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"
+        Loaded="Window_Loaded">
+    <!--Resources-->
+    <Window.Resources>
+        <BitmapImage x:Key="DefaultUserAvatar"
+                     UriSource="/Assets/Images/avatar-1.png" />
+    </Window.Resources>
+
+    <!--DataContext-->
+    <Window.DataContext>
+        <vm:MainViewModel x:Name="ViewModel" />
+    </Window.DataContext>
+
+    <!--Content-->
+    <Border Style="{StaticResource ResourceKey=MainBorder}"
+            x:Name="BrdMainContent"
+            PreviewMouseUp="BrdMainContent_PreviewMouseUp">
+        <Grid>
+            <!--Main Content-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--Nav Bar-->
+                <Border Grid.Row="0"
+                        Height="70"
+                        Background="#323232"
+                        BorderThickness="0"
+                        CornerRadius="5, 5, 0, 0"
+                        ClipToBounds="True"
+                        x:Name="BrdNavBar"
+                        MouseDown="BrdNavBar_MouseDown">
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--Logo-->
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    Margin="10, 0, 0, 0">
+                            <Image Source="/Assets/Images/logo.png"
+                                   Stretch="Uniform"
+                                   Width="24"
+                                   Height="24"
+                                   VerticalAlignment="Center"
+                                   Margin="0, 0, 5, 0" />
+                            <TextBlock Text="ویدئو"
+                                       FontFamily="{StaticResource Vazir}"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       Foreground="#FFF"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <!--Navigation Buttons-->
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    Margin="25, 0"
+                                    VerticalAlignment="Center">
+                            <RadioButton Style="{StaticResource ResourceKey=NavigationButton}"
+                                         Content="جدیدترین ها"
+                                         IsChecked="True"
+                                         Margin="0, 0, 5, 0"
+                                         Tag="0"
+                                         Click="NavigationButton_Click" />
+                            <RadioButton Style="{StaticResource ResourceKey=NavigationButton}"
+                                         Content="پربازدیدترین ها"
+                                         Margin="0, 0, 5, 0"
+                                         Tag="1"
+                                         Click="NavigationButton_Click" />
+                            <RadioButton Style="{StaticResource ResourceKey=NavigationButton}"
+                                         Content="نشان شده"
+                                         Margin="0, 0, 5, 0"
+                                         Tag="2"
+                                         Click="NavigationButton_Click" />
+                        </StackPanel>
+
+                        <!--Search-->
+                        <ToggleButton Grid.Column="2"
+                                      BorderThickness="0"
+                                      Background="#323232"
+                                      Foreground="#14FFEC"
+                                      VerticalAlignment="Center"
+                                      Cursor="Hand"
+                                      Width="30"
+                                      Height="30"
+                                      Margin="0, 0, 25, 0"
+                                      x:Name="BtnToggleSearch">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <Path Data="{StaticResource ResourceKey=SearchIcon}"
+                                                          Stretch="Uniform"
+                                                          Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ToggleButton}}, Path=Foreground}" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+
+                        <!--Profile-->
+                        <ToggleButton Grid.Column="3"
+                                      VerticalAlignment="Center"
+                                      Width="50"
+                                      Height="50"
+                                      Background="Transparent"
+                                      BorderThickness="0"
+                                      Padding="0"
+                                      Margin="0, 0, 30, 0"
+                                      Cursor="Hand"
+                                      ToolTip="{Binding Path=UserName}"
+                                      x:Name="BtnToggleProfileMenu">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                <Grid>
+                                                    <Ellipse Fill="#FFF" />
+                                                    <Ellipse StrokeThickness="2"
+                                                             Stroke="#14FFEC">
+                                                        <Ellipse.Fill>
+                                                            <ImageBrush ImageSource="{Binding Path=UserImage, FallbackValue={StaticResource ResourceKey=DefaultUserAvatar}, TargetNullValue={StaticResource ResourceKey=DefaultUserAvatar}}"
+                                                                        Stretch="Uniform" />
+                                                        </Ellipse.Fill>
+                                                    </Ellipse>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+
+                        <!--Window Buttons-->
+                        <StackPanel Grid.Column="4"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Top"
+                                    Margin="0, 10, 10, 0">
+                            <Button Style="{StaticResource ResourceKey=RoundButton}"
+                                    Background="#C4C4C4"
+                                    x:Name="BtnMinimize"
+                                    Click="BtnMinimize_Click" />
+                            <Button Style="{StaticResource ResourceKey=RoundButton}"
+                                    Background="#03A9F4"
+                                    Margin="4, 0"
+                                    x:Name="BtnMaxNorm"
+                                    Click="BtnMaxNorm_Click" />
+                            <Button Style="{StaticResource ResourceKey=RoundButton}"
+                                    Background="#F44336"
+                                    x:Name="BtnClose"
+                                    Click="BtnClose_Click" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!--Content-->
+                <Grid Grid.Row="1"
+                      x:Name="GrdContent" />
+            </Grid>
+
+            <!--Search Content-->
+            <Border Background="#88000000"
+                    BorderThickness="0"
+                    Padding="30">
+                <Grid Background="Transparent"
+                      x:Name="GrdSearch"
+                      MouseDown="GrdSearch_MouseDown">
+                    <Border CornerRadius="5"
+                            Height="50"
+                            Width="560"
+                            Background="#323232"
+                            BorderThickness="0"
+                            Padding="13, 0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--TextBox-->
+                            <TextBox Grid.Column="0"
+                                     VerticalAlignment="Center"
+                                     FontFamily="{StaticResource ResourceKey=Vazir}"
+                                     FontSize="14"
+                                     FontWeight="Regular"
+                                     Background="Transparent"
+                                     Foreground="#FFF"
+                                     BorderThickness="0"
+                                     CaretBrush="#FFF"
+                                     Text="{Binding Path=SearchText, Mode=OneWayToSource}"
+                                     x:Name="TxtSearch"
+                                     PreviewKeyDown="TxtSearch_PreviewKeyDown" />
+
+                            <!--Placeholder-->
+                            <TextBlock Grid.Column="0"
+                                       Text="جستجو فیلم، سریال و..."
+                                       FontFamily="{StaticResource ResourceKey=Vazir}"
+                                       FontSize="14"
+                                       VerticalAlignment="Center"
+                                       FontWeight="Regular"
+                                       Foreground="#7C7C7C"
+                                       IsHitTestVisible="False"
+                                       Margin="2, 0, 0, 0">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Visibility"
+                                                Value="Hidden" />
+
+                                        <!--Triggers-->
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=TxtSearch, Path=Text}"
+                                                         Value="">
+                                                <Setter Property="Visibility"
+                                                        Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <!--Icon-->
+                            <Button Grid.Column="1"
+                                    BorderThickness="0"
+                                    Background="#00000000"
+                                    Foreground="#14FFEC"
+                                    VerticalAlignment="Center"
+                                    Cursor="Hand"
+                                    Width="24"
+                                    Height="24"
+                                    Margin="10, 0, 0, 0"
+                                    x:Name="BtnSearch"
+                                    Click="BtnSearch_Click">
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Grid Background="{TemplateBinding Background}">
+                                                        <Path Data="{StaticResource ResourceKey=SearchIcon}"
+                                                              Stretch="Uniform"
+                                                              Fill="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=Foreground}" />
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <!--Style-->
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="5" />
+                        <Setter Property="Visibility"
+                                Value="Collapsed" />
+
+                        <!--Triggers-->
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=WindowState}"
+                                         Value="Maximized">
+                                <Setter Property="CornerRadius"
+                                        Value="0" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding ElementName=BtnToggleSearch, Path=IsChecked}"
+                                         Value="True">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+
+            <!--Profile Menu-->
+            <Border Background="#323232"
+                    CornerRadius="5"
+                    BorderThickness="2"
+                    BorderBrush="#14FFEC"
+                    Padding="12, 10"
+                    Width="200"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Margin="0, 75, 102, 0">
+                <StackPanel>
+                    <Button Style="{StaticResource ResourceKey=ProfileMenuButton}"
+                            Content="ویرایش پروفایل"
+                            x:Name="BtnEditProfile"
+                            Click="BtnEditProfile_Click" />
+                    <Button Style="{StaticResource ResourceKey=ProfileMenuButton}"
+                            Content="تاریخچه"
+                            Margin="0, 5"
+                            x:Name="BtnHistory"
+                            Click="BtnHistory_Click" />
+                    <Button Style="{StaticResource ResourceKey=ProfileMenuButton}"
+                            Content="خروج"
+                            x:Name="BtnSignOut"
+                            Click="BtnSignOut_Click" />
+                </StackPanel>
+
+                <!--Style-->
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="Visibility"
+                                Value="Collapsed" />
+
+                        <!--Triggers-->
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BtnToggleProfileMenu, Path=IsChecked}"
+                                         Value="True">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

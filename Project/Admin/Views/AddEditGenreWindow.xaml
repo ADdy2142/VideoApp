@@ -1,0 +1,72 @@
+﻿<Window x:Class="Project.Admin.Views.AddEditGenreWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.Admin.Views"
+        mc:Ignorable="d"
+        Title="Admin Window"
+        Height="600"
+        MinHeight="600"
+        Width="800"
+        MinWidth="800"
+        FlowDirection="RightToLeft"
+        WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--Title-->
+        <TextBlock Grid.Row="0"
+                   FontFamily="{StaticResource ResourceKey=Vazir}"
+                   FontSize="12"
+                   FontWeight="Bold"
+                   Margin="0, 0, 0, 30">
+            <Run Text="افزودن ژانر"
+                 Foreground="#222"
+                 x:Name="RunWindowFirstTitle" />
+            <Run Text="جدید"
+                 Foreground="#1E90FF"
+                 x:Name="RunWindowLastTitle" />
+        </TextBlock>
+
+        <!--Input Groups-->
+        <Grid Grid.Row="1">
+            <!--Input Group-->
+            <StackPanel>
+                <!--Label-->
+                <TextBlock Text="عنوان"
+                           FontFamily="{StaticResource ResourceKey=Vazir}"
+                           FontSize="12"
+                           Foreground="#222"
+                           Margin="0, 0, 0, 5" />
+
+                <!--TextBox-->
+                <TextBox Height="30"
+                         BorderThickness="0"
+                         Background="#F5F5F5"
+                         FontSize="12"
+                         FontFamily="{StaticResource ResourceKey=VazirFD}"
+                         Foreground="#222"
+                         Padding="8, 0"
+                         VerticalContentAlignment="Center"
+                         x:Name="TxtTitle" />
+            </StackPanel>
+        </Grid>
+
+        <!--Save Button-->
+        <Button Grid.Row="2"
+                Style="{StaticResource ResourceKey=AdminSuccessButton}"
+                Content="ذخیره"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                IsDefault="True"
+                x:Name="BtnSave"
+                Click="BtnSave_Click" />
+    </Grid>
+</Window>

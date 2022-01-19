@@ -1,0 +1,76 @@
+﻿<Window x:Class="Project.Admin.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.Admin.Views"
+        xmlns:uc="clr-namespace:Project.Admin.UserControls"
+        mc:Ignorable="d"
+        Title="Admin Window"
+        Height="600"
+        MinHeight="600"
+        Width="800"
+        MinWidth="800"
+        FlowDirection="RightToLeft"
+        WindowStartupLocation="CenterScreen"
+        Background="#FFF">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!--Navbar-->
+        <Grid Grid.Row="0"
+              Background="#F5F5F5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!--Window Title-->
+            <TextBlock Grid.Column="0"
+                       Text="مدیریت"
+                       FontFamily="{StaticResource ResourceKey=Vazir}"
+                       FontSize="12"
+                       FontWeight="Bold"
+                       Foreground="#222"
+                       VerticalAlignment="Center"
+                       Margin="10, 0, 40, 0" />
+
+            <!--Navigation Buttons-->
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center">
+                <RadioButton Style="{StaticResource ResourceKey=AdminNavbarButton}"
+                             Content="گروه"
+                             IsChecked="True"
+                             Click="NavbarButtonOnClick" />
+                <RadioButton Style="{StaticResource ResourceKey=AdminNavbarButton}"
+                             Content="ژانر"
+                             Margin="10, 0"
+                             Click="NavbarButtonOnClick" />
+                <RadioButton Style="{StaticResource ResourceKey=AdminNavbarButton}"
+                             Content="ویدئو"
+                             Click="NavbarButtonOnClick" />
+            </StackPanel>
+
+            <!--Sign Out Button-->
+            <Button Grid.Column="2"
+                    Style="{StaticResource ResourceKey=AdminSuccessButton}"
+                    Content="خروج"
+                    VerticalAlignment="Center"
+                    Margin="0, 0, 10, 0"
+                    x:Name="BtnSignOut"
+                    Click="BtnSignOut_Click" />
+        </Grid>
+
+        <!--Content-->
+        <Grid Grid.Row="1"
+              Margin="20"
+              x:Name="GrdContent">
+            <uc:GroupsUserControl />
+        </Grid>
+    </Grid>
+</Window>
